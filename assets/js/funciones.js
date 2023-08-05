@@ -6,11 +6,11 @@ function nuevaCompra() {
 function maquinaExpendedora(dinero, producto) {
     switch (producto) {
         case "Gaseosa":
-            if (dinero > 380) {
-                let vuelto = dinero - 380
+            if (dinero > 385) {
+                let vuelto = dinero - 385
                 return "Aqui tienes tu " + producto + " fresquita, y este es tu vuelto: $" + vuelto + ".-"
             } else {
-                let restanIngresar = 380 - dinero
+                let restanIngresar = 385 - dinero
                 return "Dinero insuficiente, te falta agregar $" + restanIngresar + ".-"
             }
         case "Alfajor":
