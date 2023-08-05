@@ -6,7 +6,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: rgb(32, 32, 32);
+  background-color: rgb(40, 40, 40);
   padding-top: 50px;
 }
 
@@ -17,10 +17,20 @@ h1 {
 .contenedor {
   display: flex;
   justify-content: center;
+  align-items: center;
+  width: 800px; /* Cambia el valor a la anchura deseada */
+  height: 100%; /* Cambia el valor a la altura deseada */
+  border-radius: 5%;
+  margin-top: 30px;
 }
-.contenedor button {
+.contenedor div {
+  display: flex;
+  justify-content: center;
+}
+.contenedor div button {
   color: white;
-  margin-top: 20px;
+  width: auto;
+  margin: 10px 0 10px 0;
 }
 
 /*# sourceMappingURL=styles.css.map */

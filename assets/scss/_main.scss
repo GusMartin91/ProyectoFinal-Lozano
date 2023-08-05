@@ -4,8 +4,18 @@ h1{
 .contenedor{
 	display: flex;
 	justify-content: center;
-	button{
-		color: white;
-		margin-top: 20px;
+	align-items: center;
+	width: 800px; /* Cambia el valor a la anchura deseada */
+	height: 100%; /* Cambia el valor a la altura deseada */
+	border-radius: 5%;
+	margin-top: 30px;
+	div{
+		display: flex;
+		justify-content: center;
+		button{
+			color: white;
+			width: auto;
+			margin: 10px 0 10px 0;
+		}
 	}
 }
