@@ -1,14 +1,24 @@
 h1{
 	color: red;
+	margin: 40px;
+	font-size: 48px;
+	font-weight: bolder;
+}
+h2{
+	color: #076f7f;
+	text-align: center;
+}
+section{
+	background-color: #f7a48b;
+	margin: 20px;
+	border-radius: 5%;
 }
 .contenedor{
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	width: 800px; /* Cambia el valor a la anchura deseada */
-	height: 100%; /* Cambia el valor a la altura deseada */
 	border-radius: 5%;
-	margin-top: 30px;
+	margin: 10px;
 	div{
 		display: flex;
 		justify-content: center;
