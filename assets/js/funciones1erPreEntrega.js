@@ -2,7 +2,6 @@
 function compra_maquinaExpendedora() {
     let dinero = Number(prompt("¿Cuanto dinero desea ingresar a la Maquina Expendedora?"))
     let producto = prompt("Elija uno de los productos disponibles: Gaseosa, Alfajor, Chicles, Papas Fritas, Galletitas Dulces").toLowerCase()
-    alert(producto)
     alert(maquinaExpendedora(dinero, producto))
 }
 function condicionalDinero(dinero, producto, valorProducto) {
