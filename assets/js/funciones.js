@@ -212,12 +212,12 @@ function comprarLibros() {
 -----------------------------------------
 */
 class Bulon {
-    constructor(id, nombre, precio, descripcion, img, alt) {
+    constructor(id, nombre, precio, descripcion, cantidad, img, alt) {
         this.id = id;
         this.nombre = nombre;
         this.precio = precio;
         this.descripcion = descripcion;
-        this.cantidad = 1;
+        this.cantidad = cantidad;
         this.img = img;
         this.alt = alt;
     }
@@ -233,7 +233,8 @@ class Bulon {
     }
 
     descripcionCarrito() {
-        return `
+        let desc_carrito
+        desc_carrito = `
         <div class="card mb-3" style="max-width: 540px;">
             <div class="row g-0">
                 <div class="col-md-4 d-flex align-items-center">
@@ -246,13 +247,26 @@ class Bulon {
                         <button class="btn btn-dark pt-0 pb-0 px-1" id="disminuir-${this.id}"><i class="fa-solid fa-minus"></i></button>
                         <b>${this.cantidad}</b>
                         <button class="btn btn-dark pt-0 pb-0 px-1" id="aumentar-${this.id}"><i class="fa-solid fa-plus"></i></button>
-                        </p>
-                        <p class="card-text mb-0">Precio: <b>$${this.precio}.-</b></p>
-                        <button class="btn btn-danger py-0 px-2" id="ep-${this.id}"><i class="fa-solid fa-trash-can"></i></button>
-                    </div>
+                        </p>`
+        if (this.cantidad > 1) {
+            desc_carrito += `
+            <p class="card-text mb-0">Precio U.: <b>$${this.precio}.-</b>&nbsp&nbsp&nbsp&nbsp&nbspPrecio Total: <b>$${this.precio * this.cantidad}.-</b></p>
+                    <button class="btn btn-danger py-0 px-2" id="ep-${this.id}"><i class="fa-solid fa-trash-can"></i></button>
                 </div>
             </div>
-        </div>`
+        </div>
+    </div>`
+        }else{
+            desc_carrito += `
+            <p class="card-text mb-0">Precio U.: <b>$${this.precio}.-</b></p>
+                    <button class="btn btn-danger py-0 px-2" id="ep-${this.id}"><i class="fa-solid fa-trash-can"></i></button>
+                </div>
+            </div>
+        </div>
+    </div>`
+        }
+    
+    return desc_carrito
     }
 
     descripcionBulon() {
@@ -316,21 +330,21 @@ class BulonController {
     }
 
     cargarBulones() {
-        this.agregar(new Bulon(1, "BULON CABEZA HEXAGONAL CALIDAD 4.6 DIN 931", 171, "Hierro dulce. Rosca - Metrico MA (Paso Grueso). DIN 931 con cuello. Terminación Natural / Zincado electrolítico Azul", "assets/img/1.png", "un microprocesador amd"))
-        this.agregar(new Bulon(2, "BULON CABEZA HEXAGONAL CALIDAD 4.6 DIN 933", 184, "Hierro dulce. Rosca - Metrico MA (Paso Grueso). DIN 933 con cuello. Terminación Natural / Zincado electrolítico Azul", "assets/img/2.png", "un microprocesador amd"))
-        this.agregar(new Bulon(3, "BULON CABEZA HEXAGONAL CALIDAD 8.8 DIN 931", 210, "Acero templado. Rosca - Metrico MA (Paso Grueso). DIN 931 con cuello. Terminación Zincado electrolítico Dorado", "assets/img/3.png", "un microprocesador amd"))
-        this.agregar(new Bulon(4, "BULON CABEZA HEXAGONAL CALIDAD 8.8 ROSCA MB DIN 960", 235, "Acero templado. Rosca - Metrico MB (Paso Fino). DIN 960 con cuello. Terminación Zincado electrolítico Dorado", "assets/img/4.png", "un microprocesador amd"))
-        this.agregar(new Bulon(5, "BULON CABEZA HEXAGONAL CALIDAD 8.8 ROSCA MB DIN 961", 243, "Acero templado. Rosca - Metrico MB (Paso Fino). DIN 961 todo rosca. Terminación Zincado electrolítico Dorado", "assets/img/5.png", "un microprocesador intel"))
-        this.agregar(new Bulon(6, "BULON CABEZA HEXAGONAL CALIDAD 8.8 ROSCA MC DIN 960", 264, "Acero templado. Rosca - Metrico MC (Paso Fino). DIN 960 con cuello. Terminación Zincado electrolítico Dorado", "assets/img/6.png", "un microprocesador intel"))
-        this.agregar(new Bulon(7, "BULON CABEZA HEXAGONAL CALIDAD 8.8 ROSCA MC DIN 961", 269, "Acero templado. Rosca - Métrico MC (Paso Fino). DIN 961 todo rosca. Terminación Zincado electrolítico Dorado", "assets/img/7.png", "un microprocesador intel"))
-        this.agregar(new Bulon(8, "BULON CABEZA HEXAGONAL GRADO 5 ROSCA UNC", 321, "Acero templado. Rosca - Pulgada UNC (Paso Grueso). Terminación Zincado electrolítico Dorado", "assets/img/8.png", "un microprocesador intel"))
-        this.agregar(new Bulon(9, "BULON CABEZA HEXAGONAL GRADO 5 ROSCA UNF", 326, "Acero templado. Rosca - Pulgada UNF (Paso Fino). Terminación Zincado electrolítico Dorado", "assets/img/9.png", "un microprocesador intel"))
-        this.agregar(new Bulon(10, "BULON CABEZA HEXAGONAL GRADO 5 ROSCA WTW", 340, "Acero templado. Rosca - Pulgada WTW (Paso Grueso). Terminación Zincado electrolítico Dorado", "assets/img/10.png", "un microprocesador intel"))
-        this.agregar(new Bulon(11, "BULON CABEZA HEXAGONAL ROSCA MA CALIDAD 8.8 DIN 933", 274, "Acero templado. Rosca - MA (Paso Grueso). DIN 933 Todo Rosca. Terminación Zincado electrolítico Dorado", "assets/img/11.png", "un microprocesador intel"))
-        this.agregar(new Bulon(12, "BULON HEXAGONAL CALIDAD 10.9 DIN 931 ACERO", 217, "Acero templado. Rosca - Metrico MA (Paso Grueso). DIN 931 con cuello. Terminación Pavonado Negro", "assets/img/12.png", "un microprocesador intel"))
-        this.agregar(new Bulon(13, "BULON HEXAGONAL CALIDAD 10.9 DIN 933 ACERO", 299, "Acero templado. Rosca - Metrico (Paso Grueso). Terminación Pavonado Negro", "assets/img/13.png", "un microprocesador intel"))
-        this.agregar(new Bulon(14, "TORNILLO CABEZA HEXAGONAL ROSCA UNC HIERRO", 249, "Hierro dulce. Rosca - Pulgada UNC (Paso Grueso). Terminación Zincado electrolítico Azul/ Natural", "assets/img/14.png", "un microprocesador intel"))
-        this.agregar(new Bulon(15, "TORNILLO CABEZA HEXAGONAL ROSCA WTW 1/2-12", 314, "Hierro dulce. Rosca - Pulgada WTW (Paso Grueso). Solo 1/2 - 12 hilos. Terminación Zincado electrolítico Azul/ Natural", "assets/img/15.png", "un microprocesador intel"))
+        this.agregar(new Bulon(1, "BULON CABEZA HEXAGONAL CALIDAD 4.6 DIN 931", 171, "Hierro dulce. Rosca - Metrico MA (Paso Grueso). DIN 931 con cuello. Terminación Natural / Zincado electrolítico Azul", 1, "assets/img/1.png", "un microprocesador amd"))
+        this.agregar(new Bulon(2, "BULON CABEZA HEXAGONAL CALIDAD 4.6 DIN 933", 184, "Hierro dulce. Rosca - Metrico MA (Paso Grueso). DIN 933 con cuello. Terminación Natural / Zincado electrolítico Azul", 1, "assets/img/2.png", "un microprocesador amd"))
+        this.agregar(new Bulon(3, "BULON CABEZA HEXAGONAL CALIDAD 8.8 DIN 931", 210, "Acero templado. Rosca - Metrico MA (Paso Grueso). DIN 931 con cuello. Terminación Zincado electrolítico Dorado", 1, "assets/img/3.png", "un microprocesador amd"))
+        this.agregar(new Bulon(4, "BULON CABEZA HEXAGONAL CALIDAD 8.8 ROSCA MB DIN 960", 235, "Acero templado. Rosca - Metrico MB (Paso Fino). DIN 960 con cuello. Terminación Zincado electrolítico Dorado", 1, "assets/img/4.png", "un microprocesador amd"))
+        this.agregar(new Bulon(5, "BULON CABEZA HEXAGONAL CALIDAD 8.8 ROSCA MB DIN 961", 243, "Acero templado. Rosca - Metrico MB (Paso Fino). DIN 961 todo rosca. Terminación Zincado electrolítico Dorado", 1, "assets/img/5.png", "un microprocesador intel"))
+        this.agregar(new Bulon(6, "BULON CABEZA HEXAGONAL CALIDAD 8.8 ROSCA MC DIN 960", 264, "Acero templado. Rosca - Metrico MC (Paso Fino). DIN 960 con cuello. Terminación Zincado electrolítico Dorado", 1, "assets/img/6.png", "un microprocesador intel"))
+        this.agregar(new Bulon(7, "BULON CABEZA HEXAGONAL CALIDAD 8.8 ROSCA MC DIN 961", 269, "Acero templado. Rosca - Métrico MC (Paso Fino). DIN 961 todo rosca. Terminación Zincado electrolítico Dorado", 1, "assets/img/7.png", "un microprocesador intel"))
+        this.agregar(new Bulon(8, "BULON CABEZA HEXAGONAL GRADO 5 ROSCA UNC", 321, "Acero templado. Rosca - Pulgada UNC (Paso Grueso). Terminación Zincado electrolítico Dorado", 1, "assets/img/8.png", "un microprocesador intel"))
+        this.agregar(new Bulon(9, "BULON CABEZA HEXAGONAL GRADO 5 ROSCA UNF", 326, "Acero templado. Rosca - Pulgada UNF (Paso Fino). Terminación Zincado electrolítico Dorado", 1, "assets/img/9.png", "un microprocesador intel"))
+        this.agregar(new Bulon(10, "BULON CABEZA HEXAGONAL GRADO 5 ROSCA WTW", 340, "Acero templado. Rosca - Pulgada WTW (Paso Grueso). Terminación Zincado electrolítico Dorado", 1, "assets/img/10.png", "un microprocesador intel"))
+        this.agregar(new Bulon(11, "BULON CABEZA HEXAGONAL ROSCA MA CALIDAD 8.8 DIN 933", 274, "Acero templado. Rosca - MA (Paso Grueso). DIN 933 Todo Rosca. Terminación Zincado electrolítico Dorado", 1, "assets/img/11.png", "un microprocesador intel"))
+        this.agregar(new Bulon(12, "BULON HEXAGONAL CALIDAD 10.9 DIN 931 ACERO", 217, "Acero templado. Rosca - Metrico MA (Paso Grueso). DIN 931 con cuello. Terminación Pavonado Negro", 1, "assets/img/12.png", "un microprocesador intel"))
+        this.agregar(new Bulon(13, "BULON HEXAGONAL CALIDAD 10.9 DIN 933 ACERO", 299, "Acero templado. Rosca - Metrico (Paso Grueso). Terminación Pavonado Negro", 1, "assets/img/13.png", "un microprocesador intel"))
+        this.agregar(new Bulon(14, "TORNILLO CABEZA HEXAGONAL ROSCA UNC HIERRO", 249, "Hierro dulce. Rosca - Pulgada UNC (Paso Grueso). Terminación Zincado electrolítico Azul/ Natural", 1, "assets/img/14.png", "un microprocesador intel"))
+        this.agregar(new Bulon(15, "TORNILLO CABEZA HEXAGONAL ROSCA WTW 1/2-12", 314, "Hierro dulce. Rosca - Pulgada WTW (Paso Grueso). Solo 1/2 - 12 hilos. Terminación Zincado electrolítico Azul/ Natural", 1, "assets/img/15.png", "un microprocesador intel"))
     }
 
     mostrarEnDOM() {
@@ -365,7 +379,7 @@ class Carrito {
 
         if (existe) {
             let bulon = this.listaCarrito.find(bulon => bulon.id == bulonAgregar.id)
-            bulon.aumentarCantidad()            
+            bulon.aumentarCantidad()
             this.guardarEnStorage()
             this.mostrarEnDOM()
             this.mostrarTotal()
@@ -380,6 +394,8 @@ class Carrito {
     eliminar(bulonAEliminar) {
         let indice = this.listaCarrito.findIndex(bulon => bulon.id == bulonAEliminar.id)
         this.listaCarrito.splice(indice, 1)
+        this.guardarEnStorage()
+        this.mostrarEnDOM()
         this.mostrarTotal()
     }
 
@@ -394,7 +410,7 @@ class Carrito {
             let listaCarritoJS = JSON.parse(listaCarritoJSON)
             let listaAux = []
             listaCarritoJS.forEach(bulon => {
-                let nuevoBulon = new Bulon(bulon.id, bulon.nombre, bulon.precio, bulon.descripcion, bulon.img, bulon.alt)
+                let nuevoBulon = new Bulon(bulon.id, bulon.nombre, bulon.precio, bulon.descripcion, bulon.cantidad, bulon.img, bulon.alt)
                 listaAux.push(nuevoBulon)
             })
             this.listaCarrito = listaAux
@@ -409,35 +425,33 @@ class Carrito {
         })
 
         this.listaCarrito.forEach(bulon => {
+            const btn_aumentar = document.getElementById(`aumentar-${bulon.id}`)
+
+            btn_aumentar.addEventListener("click", () => {
+                this.agregar(bulon)
+                this.guardarEnStorage()
+                this.mostrarEnDOM()
+                this.mostrarTotal()
+            })
+        })
+
+        this.listaCarrito.forEach(bulon => {
+            const btn_disminuir = document.getElementById(`disminuir-${bulon.id}`)
+
+            btn_disminuir.addEventListener("click", () => {
+                bulon.disminuirCantidad()
+                this.guardarEnStorage()
+                this.mostrarEnDOM()
+                this.mostrarTotal()
+            })
+        })
+
+        this.listaCarrito.forEach(bulon => {
             const btn_ep = document.getElementById(`ep-${bulon.id}`)
 
             btn_ep.addEventListener("click", () => {
                 this.eliminar(bulon)
                 this.guardarEnStorage()
-                this.mostrarEnDOM()
-            })
-        })
-    }
-    eventoAumentarCantidad() {
-        this.listaCarrito.forEach(bulon => {
-            //obtener el id de los botones
-            const btn_aumentar = document.getElementById(`aumentar-${bulon.id}`)
-            //darle el evento
-            btn_aumentar.addEventListener("click", () => {
-                bulon.aumentarCantidad()
-                this.mostrarEnDOM()
-                this.mostrarTotal()
-            })
-        })
-    }
-
-    eventoDisminuirCantidad() {
-        this.listaCarrito.forEach(bulon => {
-            //obtener el id de los botones
-            const btn_disminuir = document.getElementById(`disminuir-${bulon.id}`)
-            //darle el evento
-            btn_disminuir.addEventListener("click", () => {
-                bulon.disminuirCantidad()
                 this.mostrarEnDOM()
                 this.mostrarTotal()
             })
@@ -449,7 +463,9 @@ class Carrito {
     }
     mostrarTotal() {
         const precio_total = document.getElementById("precio_total")
+        const btn_precio_total = document.getElementById("btn_precio_total")
         precio_total.innerText = `Precio Total: $${this.calcularTotal()}`
+        btn_precio_total.innerHTML = `<i class="fa-light fa-cart-shopping"></i>&nbsp;&nbsp;Tu Pedido - <b>$${this.calcularTotal()}</b>`
     }
 }
 
