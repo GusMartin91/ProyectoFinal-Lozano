@@ -25,12 +25,24 @@ body {
   color: red;
 }
 
+#modalLabel {
+  color: rgb(255, 81, 0);
+}
+
+.bCant {
+  color: greenyellow;
+}
+
 .filtros {
   width: 60%;
 }
 
 .noMargin {
   margin: 0px;
+}
+
+.botonAgregarCarrito :hover {
+  padding: 6px;
 }
 
 h2 {
