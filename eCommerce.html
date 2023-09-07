@@ -20,29 +20,33 @@
         <h1 class="text-center h1title"><a href="index.html">Curso Javascript - Gustavo Lozano</a></h1>
         <h2 class="pCarrito">Bulones - EL PITUTO</h2>
         <div class="container-xl d-flex justify-content-end">
-            <button type="button" id="btn_precio_total" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modal">
+            <button type="button" id="btn_precio_total" class="btn btn-success py-0" data-bs-toggle="modal" data-bs-target="#modal">
                 <i class="fa-light fa-cart-shopping"></i>&nbsp;&nbsp;Tu Pedido
             </button>
         </div>
+        <br>
         <div class="row">
-            <section class="col-2">
+            <section class="col-2 pe-0">
                 <h3>Filtros:</h3>
                 <h5>Por Precio:</h5>
                 <input class="filtros" type="number" name="" id="precioMin" placeholder="Precio Minimo">
                 <input class="filtros" type="number" name="" id="precioMax" placeholder="Precio Maximo">
                 <h5>Por Material:</h5>
-                <select name="material" id="material" class="form-select filtros">
+                <select name="material" id="material" class="form-select filtros py-0">
                     <option value="" selected disaled hidden>Seleccionar...</option>
-                    <option value="1">Acero Templado</option>
-                    <option value="2">Hierro Dulce</option>
+                    <option value="Acero Templado">Acero Templado</option>
+                    <option value="Hierro Dulce">Hierro Dulce</option>
+                    <option value="Todos">Todos</option>
                 </select>
-                <hr>
+                <hr class="my-2">
                 <h3>Ordenar:</h3>
                 <h5>Por Precio:</h5>
-                <button type="button" class="btn btn-light my-1" id="ordenMenor">Menor Precio</button>
-                <button type="button" class="btn btn-light my-1" id="ordenMayor">Mayor Precio</button>
+                <button type="button" class="btn btn-light my-1 py-0" id="ordenMenor"><i class="fa-sharp fa-solid fa-arrow-up fa-rotate-180"></i> Menor Precio</button>
+                <button type="button" class="btn btn-light my-1 py-0" id="ordenMayor"><i class="fa-sharp fa-solid fa-arrow-up"></i> Mayor Precio</button>
+                <hr class="my-2">
+                <button type="button" class="btn btn-warning btn-sm" id="reestablecerFiltro"><i class="fa-regular fa-arrows-rotate"></i> Reestablecer Filtros</button>
             </section>
-            <section class=" col-10 container d-flex flex-wrap gap-4 justify-content-center pt-4 px-3"
+            <section class="col-10 container d-flex flex-wrap gap-4 justify-content-center ps-0 px-5"
                 id="contenedor_bulones">
             </section>
         </div>
@@ -62,7 +66,7 @@
 
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-danger justify-self-start" onclick="vaciarCarrito()"><i
+                    <button type="button" class="btn btn-danger justify-self-start" id="vaciarCarrito"><i
                             class="fa-solid fa-trash-can-list"></i> Vaciar Carrito</button>
                     <button type="button" class="btn btn-primary" data-bs-dismiss="modal"><i
                             class="fa-light fa-cart-shopping"></i> Seguir Comprando</button>
