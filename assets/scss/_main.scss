@@ -1,28 +1,65 @@
-h1{
-	color: red;
-	margin: 40px;
-	font-size: 48px;
+#modalLabel{
 	font-weight: bolder;
 }
-h2{
+.h1title {
+	color: red;
+	margin: 20px;
+	font-size: 48px;
+	font-weight: bolder;
+	a {
+		text-decoration: none;
+		color: red;
+	}
+}
+.filtros{
+	width: 60%;
+}
+.noMargin{
+	margin: 0px;
+}
+h3{
+	font-weight: bolder;
+	color: rgb(255, 81, 0);
+	margin: 0px;
+}
+h5{
+	font-weight: bold;
+	color: rgb(255, 81, 0);
+	margin: 0px 0px 5px 0px;
+}
+h2 {
 	color: #076f7f;
 	text-align: center;
 }
-section{
+.pCarrito{
+	color: red;
+	font-weight: bolder;
+	text-align: center;
+}
+.precio{
+	font-size: 28px;
+	color: #041a99;
+	text-align: center;
+	font-weight: bolder;
+}
+.section {
 	background-color: #f7a48b;
 	margin: 20px;
 	border-radius: 5%;
 }
-.contenedor{
+
+.contenedor {
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	border-radius: 5%;
 	margin: 10px;
-	div{
+
+	div {
 		display: flex;
 		justify-content: center;
-		button{
+
+		button {
 			color: white;
 			width: auto;
 			margin: 10px 0 10px 0;
