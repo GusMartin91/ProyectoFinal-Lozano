@@ -282,7 +282,7 @@ class Bulon {
                 <p class="card-text precio d-flex justify-content-center">$${this.precio}.-</p>
             </div>
             <div class="card-footer d-flex justify-content-center">
-                <button class="btn btn-primary py-0 botonAgregarCarrito" id="ap-${this.id}"><i class="fa-light fa-cart-shopping"></i> Añadir al Pedido</button>
+                <button class="btn btn-primary py-0" id="ap-${this.id}"><i class="fa-light fa-cart-shopping"></i> Añadir al Pedido</button>
             </div>
         </div>`
     }

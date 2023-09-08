@@ -41,10 +41,6 @@ body {
   margin: 0px;
 }
 
-.botonAgregarCarrito :hover {
-  padding: 6px;
-}
-
 h2 {
   color: #076f7f;
   text-align: center;
