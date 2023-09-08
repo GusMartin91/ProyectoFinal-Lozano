@@ -282,7 +282,7 @@ class Bulon {
                 <p class="card-text precio d-flex justify-content-center">$${this.precio}.-</p>
             </div>
             <div class="card-footer d-flex justify-content-center">
-                <button class="btn btn-primary py-0" id="ap-${this.id}"><i class="fa-light fa-cart-shopping"></i> Añadir al Pedido</button>
+                <button class="btn btn-animacion btn-primary" onclick="addAnimation(this)" id="ap-${this.id}">Añadir al Pedido <i class="fa-light fa-cart-shopping"></i></button>
             </div>
         </div>`
     }
@@ -306,7 +306,7 @@ class BulonController {
         const materialSelect = document.getElementById("material")
         materialSelect.addEventListener("change", () => {
             this.filtroMaterial()
-            this.conteoBulones()            
+            this.conteoBulones()
         });
 
         const restablecerFiltrosBtn = document.getElementById("restablecerFiltros")
@@ -319,7 +319,7 @@ class BulonController {
     conteoBulones() {
         let cantidadBulones = this.listaBulones.length
         const conteoHTML = document.getElementById("conteoHTML")
-        conteoHTML.innerHTML = `Cant. de productos: <b class="bCant">(`+cantidadBulones+`)</b>`
+        conteoHTML.innerHTML = `Cant. de productos: <b class="bCant">(` + cantidadBulones + `)</b>`
     }
     restablecerFiltros() {
         const materialSelect = document.getElementById("material")
@@ -340,32 +340,32 @@ class BulonController {
     filtroMaterial() {
         const materialSelect = document.getElementById("material")
         let selectedMaterial = materialSelect.value
-    
+
         let minPrice = parseFloat(document.getElementById("precioMin").value) || 0
         let maxPrice = parseFloat(document.getElementById("precioMax").value) || Infinity
-    
+
         this.listaBulones = []
         this.cargarBulones()
         if (selectedMaterial !== "Todos") {
             this.listaBulones = this.listaBulones.filter(bulon => bulon.material === selectedMaterial)
         }
-    
+
         this.listaBulones = this.listaBulones.filter(bulon => minPrice <= bulon.precio && bulon.precio <= maxPrice)
         this.mostrarEnDOM()
         this.conteoBulones()
     }
-    
+
     filtroPrecio() {
         const precio_min = document.getElementById("precioMin")
         const precio_max = document.getElementById("precioMax")
-    
+
         precio_min.addEventListener("change", () => {
             this.filtrarPorPrecio()
             this.filtroMaterial()
             this.mostrarEnDOM()
             this.conteoBulones()
         })
-    
+
         precio_max.addEventListener("change", () => {
             this.filtrarPorPrecio()
             this.filtroMaterial()
@@ -373,7 +373,7 @@ class BulonController {
             this.conteoBulones()
         })
     }
-    
+
 
     filtrarPorPrecio(min = 0, max = Infinity) {
         this.listaBulones = []
@@ -434,7 +434,7 @@ class BulonController {
                 carrito.guardarEnStorage()
                 carrito.mostrarEnDOM()
             })
-        })        
+        })
         this.conteoBulones()
     }
 }
@@ -493,10 +493,14 @@ class Carrito {
     }
 
     mostrarEnDOM() {
-        let cantCarrito = this.listaCarrito.length
+        let cantCarrito = 0
+        this.listaCarrito.forEach(bulon => {
+            cantCarrito = cantCarrito + bulon.cantidad
+        });
+
         let contenedor_carrito = document.getElementById("contenedor_carrito")
         let tituloCarrito = document.getElementById("modalLabel")
-        tituloCarrito.innerHTML = "Llevas "+cantCarrito+" productos agregados."
+        tituloCarrito.innerHTML = "Llevas " + cantCarrito + " productos agregados."
         contenedor_carrito.innerHTML = ""
         this.listaCarrito.forEach(bulon => {
             contenedor_carrito.innerHTML += bulon.descripcionCarrito();
@@ -565,14 +569,48 @@ CP.cargarBulones()
 CP.mostrarEnDOM()
 CP.filtroPrecio()
 
-
-
 const restablecerFiltros = document.getElementById("restablecerFiltros")
 const rotarFlechas = document.getElementById("rotarFlechas")
 
-restablecerFiltros.addEventListener("mouseover", function() {
-    rotarFlechas.setAttribute('class','fa-regular fa-arrows-rotate fa-spin')
+restablecerFiltros.addEventListener("mouseover", function () {
+    rotarFlechas.setAttribute('class', 'fa-regular fa-arrows-rotate fa-spin')
 })
-restablecerFiltros.addEventListener("mouseout", function() {
-    rotarFlechas.setAttribute('class','fa-regular fa-arrows-rotate')
+restablecerFiltros.addEventListener("mouseout", function () {
+    rotarFlechas.setAttribute('class', 'fa-regular fa-arrows-rotate')
 })
+
+function addAnimation(button) {
+    button.classList.add('animacion')
+    button.innerHTML = 'Añadir al Pedido &nbsp;&nbsp;<i class="fa-light fa-cart-shopping-fast"></i>'
+    setTimeout(() => {
+        button.classList.remove('animacion')
+        button.innerHTML = 'Añadir al Pedido <i class="fa-light fa-cart-shopping"></i>'
+    }, 1000)
+}
+let irAlPago = document.getElementById("pagar");
+irAlPago.addEventListener("click", () => {
+    if (localStorage.length != 0) {
+        localStorage.removeItem("listaCarrito")
+        Swal.fire({
+            title: 'Gracias por su compra!',
+            text: 'Vuelva pronto!',
+            icon: 'success',
+            confirmButtonText: 'Aceptar'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                location.reload();
+            }
+        });
+    } else {
+        Swal.fire({
+            title: 'Añade productos al carrito!!',
+            text: 'Todavia no has añadido productos!',
+            icon: 'warning',
+            confirmButtonText: 'Aceptar'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                location.reload();
+            }
+        })
+    }
+});

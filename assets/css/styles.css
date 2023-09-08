@@ -99,4 +99,13 @@ h6 {
   margin: 10px 0 10px 0;
 }
 
+.btn-animacion {
+  padding: 0px 12px;
+  transition: background-color 1s;
+}
+
+.btn-animacion.animacion {
+  background-color: #ff672b;
+}
+
 /*# sourceMappingURL=styles.css.map */
