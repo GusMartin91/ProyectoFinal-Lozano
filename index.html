@@ -16,44 +16,69 @@
 </head>
 
 <body>
-    <main>
+    <main class="container-fluid justify-content-center">
         <h1 class="text-center h1title"><a href="index.html">Curso Javascript - Gustavo Lozano</a></h1>
-        <div class="row justify-content-center">
-            <section class="col-5 section">
-                <div class="contenedor row">
-                    <h2>Primer Pre-Entrega</h2>
-                    <div>
-                        <button onclick="compra_maquinaExpendedora()" class="btn btn-success"><i
-                                class="fa-regular fa-cart-shopping"></i> Realizar compra en Maquina Expendedora</button>
-                    </div>
-                    <div>
-                        <button onclick="gastos_mensuales()" class="btn btn-success"><i class="fa-regular fa-note"></i>
-                            Agregar Servicios o Gastos Mensuales</button>
-                    </div>
-                </div>
+        <h2 class="pCarrito">Bulones - EL PITUTO</h2>
+        <div class="container-xl d-flex justify-content-end">
+            <button type="button" id="btn_precio_total" class="btn btn-warning py-0" data-bs-toggle="modal"
+                data-bs-target="#modal">
+                <i id="btnPedido" class="fa-light fa-cart-shopping"></i>&nbsp;&nbsp;Tu Pedido
+            </button>
+        </div><br>
+        <div class="row">
+            <section class="col-2 pe-0">
+                <h3>Filtros:</h3>
+                <h5 id="conteoHTML">Cant. de productos: <b class="bCant">(X)</b></h5>
+                <h5>Por Precio:</h5>
+                <input class="filtros" type="number" name="" id="precioMin" placeholder="Precio Minimo">
+                <input class="filtros" type="number" name="" id="precioMax" placeholder="Precio Maximo">
+                <h5>Por Material:</h5>
+                <select name="material" id="material" class="form-select filtros py-0">
+                    <option value="Todos">Todos</option>
+                    <option value="Acero Templado">Acero Templado</option>
+                    <option value="Hierro Dulce">Hierro Dulce</option>
+                </select>
+                <hr class="my-2">
+                <h3>Ordenar:</h3>
+                <h5>Por Precio:</h5>
+                <button type="button" class="btn btn-light my-1 py-0" id="ordenMenor"><i
+                        class="fa-sharp fa-solid fa-arrow-up fa-rotate-180"></i> Menor Precio</button>
+                <button type="button" class="btn btn-light my-1 py-0" id="ordenMayor"><i
+                        class="fa-sharp fa-solid fa-arrow-up"></i> Mayor Precio</button>
+                <hr class="my-2">
+                <button type="button" class="btn btn-warning btn-sm" id="restablecerFiltros"><i id="rotarFlechas"
+                        class="fa-regular fa-arrows-rotate"></i> Restablecer Filtros</button>
             </section>
-            <section class="col-5 section">
-                <div class="contenedor row">
-                    <h2>Segunda Pre-Entrega</h2>
-                    <div>
-                        <button onclick="comprarLibros()" class="btn btn-success"><i
-                                class="fa-light fa-books fa-lg"></i>
-                            Comprar Novelas y Libros varios</button>
-                    </div>
-                </div>
-            </section>
-            <section class="col-5 section">
-                <div class="contenedor row">
-                    <h2>Tercer Pre-Entrega</h2>
-                    <div>
-                        <a href="eCommerce.html" class="btn btn-success"><i
-                            class="fa-regular fa-lg fa-cart-shopping"></i>
-                            Ir al Mini E-commerce</a>
-                    </div>
-                </div>
+            <section class="col-10 container d-flex flex-wrap gap-4 justify-content-center ps-0 px-5"
+                id="contenedor_bulones">
             </section>
         </div>
     </main>
+    <!-- Modal -->
+    <div class="modal fade" id="modal" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header"
+                    style="background: linear-gradient(155deg, rgb(1, 48, 67) 0%, rgb(2, 74, 99) 36%, rgb(12, 123, 140) 100%)!important;">
+                    <h3 class="modal-title fs-3" id="modalLabel">Tu Pedido</h3>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body" id="contenedor_carrito">
+                </div>
+                <div class="text-center" id="precio_total">
+                </div>
+                <div class="modal-footer justify-content-evenly">
+                    <button type="button" class="btn btn-danger" id="vaciarCarrito"><i
+                            class="fa-solid fa-trash-can-list"></i> Vaciar Carrito</button>
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal"><i
+                            class="fa-light fa-cart-shopping"></i> Seguir Comprando</button>
+                    <button type="button" class="btn btn-success" id="pagar"><i
+                            class="fa-sharp fa-regular fa-cash-register"></i>
+                        Ir al pago</button>
+                </div>
+            </div>
+        </div>
+    </div>
     <!-- Scripts -->
     <script src="assets/js/bootstrap.min.js"></script>
     <script src="assets/js/sweetalert.min.js"></script>
