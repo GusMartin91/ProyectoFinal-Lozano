@@ -1,0 +1,162 @@
+[
+    {
+        "id": 1,
+        "nombre": "BULON CABEZA HEXAGONAL CALIDAD 4.6 DIN 931",
+        "precio": 171,
+        "descripcion": "Hierro dulce. Rosca - Metrico MA (Paso Grueso). DIN 931 con cuello. Terminación Natural / Zincado electrolítico Azul",
+        "cantidad": 1,
+        "material": "Hierro Dulce",
+        "img": "assets/img/1.png",
+        "alt": "bulon tornillo rosca metal acero hierro"
+    },
+    {
+        "id": 2,
+        "nombre": "BULON CABEZA HEXAGONAL CALIDAD 4.6 DIN 933",
+        "precio": 184,
+        "descripcion": "Hierro dulce. Rosca - Metrico MA (Paso Grueso). DIN 933 con cuello. Terminación Natural / Zincado electrolítico Azul",
+        "cantidad": 1,
+        "material": "Hierro Dulce",
+        "img": "assets/img/2.png",
+        "alt": "bulon tornillo rosca metal acero hierro"
+    },
+    {
+        "id": 3,
+        "nombre": "BULON CABEZA HEXAGONAL CALIDAD 8.8 DIN 931",
+        "precio": 210,
+        "descripcion": "Acero templado. Rosca - Metrico MA (Paso Grueso). DIN 931 con cuello. Terminación Zincado electrolítico Dorado",
+        "cantidad": 1,
+        "material": "Acero Templado",
+        "img": "assets/img/3.png",
+        "alt": "bulon tornillo rosca metal acero hierro"
+    },
+    {
+        "id": 4,
+        "nombre": "BULON CABEZA HEXAGONAL CALIDAD 8.8 ROSCA MB DIN 960",
+        "precio": 235,
+        "descripcion": "Acero templado. Rosca - Metrico MB (Paso Fino). DIN 960 con cuello. Terminación Zincado electrolítico Dorado",
+        "cantidad": 1,
+        "material": "Acero Templado",
+        "img": "assets/img/4.png",
+        "alt": "bulon tornillo rosca metal acero hierro"
+    },
+    {
+        "id": 5,
+        "nombre": "BULON CABEZA HEXAGONAL CALIDAD 8.8 ROSCA MB DIN 961",
+        "precio": 243,
+        "descripcion": "Acero templado. Rosca - Metrico MB (Paso Fino). DIN 961 todo rosca. Terminación Zincado electrolítico Dorado",
+        "cantidad": 1,
+        "material": "Acero Templado",
+        "img": "assets/img/5.png",
+        "alt": "bulon tornillo rosca metal acero hierro"
+    },
+    {
+        "id": 6,
+        "nombre": "BULON CABEZA HEXAGONAL CALIDAD 8.8 ROSCA MC DIN 960",
+        "precio": 264,
+        "descripcion": "Acero templado. Rosca - Metrico MC (Paso Fino). DIN 960 con cuello. Terminación Zincado electrolítico Dorado",
+        "cantidad": 1,
+        "material": "Acero Templado",
+        "img": "assets/img/6.png",
+        "alt": "bulon tornillo rosca metal acero hierro"
+    },
+    {
+        "id": 7,
+        "nombre": "BULON CABEZA HEXAGONAL CALIDAD 8.8 ROSCA MC DIN 961",
+        "precio": 269,
+        "descripcion": "Acero templado. Rosca - Métrico MC (Paso Fino). DIN 961 todo rosca. Terminación Zincado electrolítico Dorado",
+        "cantidad": 1,
+        "material": "Acero Templado",
+        "img": "assets/img/7.png",
+        "alt": "bulon tornillo rosca metal acero hierro"
+    },
+    {
+        "id": 8,
+        "nombre": "BULON CABEZA HEXAGONAL GRADO 5 ROSCA UNC",
+        "precio": 321,
+        "descripcion": "Acero templado. Rosca - Pulgada UNC (Paso Grueso). Terminación Zincado electrolítico Dorado",
+        "cantidad": 1,
+        "material": "Acero Templado",
+        "img": "assets/img/8.png",
+        "alt": "bulon tornillo rosca metal acero hierro"
+    },
+    {
+        "id": 9,
+        "nombre": "BULON CABEZA HEXAGONAL GRADO 5 ROSCA UNF",
+        "precio": 326,
+        "descripcion": "Acero templado. Rosca - Pulgada UNF (Paso Fino). Terminación Zincado electrolítico Dorado",
+        "cantidad": 1,
+        "material": "Acero Templado",
+        "img": "assets/img/9.png",
+        "alt": "bulon tornillo rosca metal acero hierro"
+    },
+    {
+        "id": 10,
+        "nombre": "BULON CABEZA HEXAGONAL GRADO 5 ROSCA WTW",
+        "precio": 340,
+        "descripcion": "Acero templado. Rosca - Pulgada WTW (Paso Grueso). Terminación Zincado electrolítico Dorado",
+        "cantidad": 1,
+        "material": "Acero Templado",
+        "img": "assets/img/10.png",
+        "alt": "bulon tornillo rosca metal acero hierro"
+    },
+    {
+        "id": 11,
+        "nombre": "BULON CABEZA HEXAGONAL ROSCA MA CALIDAD 8.8 DIN 933",
+        "precio": 274,
+        "descripcion": "Acero templado. Rosca - MA (Paso Grueso). DIN 933 Todo Rosca. Terminación Zincado electrolítico Dorado",
+        "cantidad": 1,
+        "material": "Acero Templado",
+        "img": "assets/img/11.png",
+        "alt": "bulon tornillo rosca metal acero hierro"
+    },
+    {
+        "id": 12,
+        "nombre": "BULON HEXAGONAL CALIDAD 10.9 DIN 931 ACERO",
+        "precio": 217,
+        "descripcion": "Acero templado. Rosca - Metrico MA (Paso Grueso). DIN 931 con cuello. Terminación Pavonado Negro",
+        "cantidad": 1,
+        "material": "Acero Templado",
+        "img": "assets/img/12.png",
+        "alt": "bulon tornillo rosca metal acero hierro"
+    },
+    {
+        "id": 13,
+        "nombre": "BULON HEXAGONAL CALIDAD 10.9 DIN 933 ACERO",
+        "precio": 299,
+        "descripcion": "Acero templado. Rosca - Metrico (Paso Grueso). Terminación Pavonado Negro",
+        "cantidad": 1,
+        "material": "Acero Templado",
+        "img": "assets/img/13.png",
+        "alt": "bulon tornillo rosca metal acero hierro"
+    },
+    {
+        "id": 14,
+        "nombre": "TORNILLO CABEZA HEXAGONAL ROSCA UNC HIERRO",
+        "precio": 249,
+        "descripcion": "Hierro dulce. Rosca - Pulgada UNC (Paso Grueso). Terminación Zincado electrolítico Azul/ Natural",
+        "cantidad": 1,
+        "material": "Hierro Dulce",
+        "img": "assets/img/14.png",
+        "alt": "bulon tornillo rosca metal acero hierro"
+    },
+    {
+        "id": 15,
+        "nombre": "TORNILLO CABEZA HEXAGONAL ROSCA WTW 1/2-12",
+        "precio": 314,
+        "descripcion": "Hierro dulce. Rosca - Pulgada WTW (Paso Grueso). Solo 1/2 - 12 hilos. Terminación Zincado electrolítico Azul/ Natural",
+        "cantidad": 1,
+        "material": "Hierro Dulce",
+        "img": "assets/img/15.png",
+        "alt": "bulon tornillo rosca metal acero hierro"
+    },
+    {
+        "id": 16,
+        "nombre": "TORNILLO CABEZA HEXAGONAL ROSCA WTW 1/2-18",
+        "precio": 365,
+        "descripcion": "Hierro dulce. Rosca - Pulgada WTW (Paso Fino). Solo 1/2 - 18 hilos. Terminación Zincado electrolítico Azul/ Natural",
+        "cantidad": 1,
+        "material": "Hierro Dulce",
+        "img": "assets/img/16.png",
+        "alt": "bulon tornillo rosca metal acero hierro"
+    }
+]
