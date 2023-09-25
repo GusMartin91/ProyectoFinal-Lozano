@@ -82,23 +82,15 @@ class BulonController {
 
     eventosEnEscucha() {
         document.getElementById("material").addEventListener("change", () => {
-            this.filtroMaterial()
+            this.filtrar()
         });
 
-        const precioMin = document.getElementById("precioMin")
-        precioMin.addEventListener("change", () => {
-            let precioMinimo = parseFloat(precioMin.value) || 0
-            let precioMaximo = parseFloat(precioMax.value) || Infinity
-            this.filtrarPorPrecio(precioMinimo, precioMaximo)
-            this.filtroMaterial()
+        document.getElementById("precioMin").addEventListener("change", () => {
+            this.filtrar()
         })
 
-        const precioMax = document.getElementById("precioMax")
-        precioMax.addEventListener("change", () => {
-            let precioMinimo = parseFloat(precioMin.value) || 0
-            let precioMaximo = parseFloat(precioMax.value) || Infinity
-            this.filtrarPorPrecio(precioMinimo, precioMaximo)
-            this.filtroMaterial()
+        document.getElementById("precioMax").addEventListener("change", () => {
+            this.filtrar()
         })
 
         document.getElementById("ordenMenor").addEventListener("click", () => {
@@ -112,15 +104,11 @@ class BulonController {
         document.getElementById("restablecerFiltros").addEventListener("click", () => {
             this.restablecerFiltros()
         });
-    }
 
-    filtrarPorPrecio(min = 0, max = Infinity) {
-        this.listaBulones = []
         this.cargarBulones()
-        this.listaBulones = this.listaBulones.filter(bulon => min <= bulon.precio && bulon.precio <= max)
     }
 
-    filtroMaterial() {
+    filtrar() {
         let selectedMaterial = document.getElementById("material").value
         let precioMinimo = parseFloat(document.getElementById("precioMin").value) || 0
         let precioMaximo = parseFloat(document.getElementById("precioMax").value) || Infinity
@@ -130,7 +118,6 @@ class BulonController {
         if (selectedMaterial !== "Todos") {
             this.listaBulones = this.listaBulones.filter(bulon => bulon.material === selectedMaterial)
         }
-
         this.listaBulones = this.listaBulones.filter(bulon => precioMinimo <= bulon.precio && bulon.precio <= precioMaximo)
         this.mostrarEnDOM()
     }
@@ -164,46 +151,62 @@ class BulonController {
         }
     }
 
-    cargarBulones() {
-        this.agregar(new Bulon(1, "BULON CABEZA HEXAGONAL CALIDAD 4.6 DIN 931", 171, "Hierro dulce. Rosca - Metrico MA (Paso Grueso). DIN 931 con cuello. Terminación Natural / Zincado electrolítico Azul", 1, "Hierro Dulce", "assets/img/1.png", "bulon tornillo rosca metal acero hierro"))
-        this.agregar(new Bulon(2, "BULON CABEZA HEXAGONAL CALIDAD 4.6 DIN 933", 184, "Hierro dulce. Rosca - Metrico MA (Paso Grueso). DIN 933 con cuello. Terminación Natural / Zincado electrolítico Azul", 1, "Hierro Dulce", "assets/img/2.png", "bulon tornillo rosca metal acero hierro"))
-        this.agregar(new Bulon(3, "BULON CABEZA HEXAGONAL CALIDAD 8.8 DIN 931", 210, "Acero templado. Rosca - Metrico MA (Paso Grueso). DIN 931 con cuello. Terminación Zincado electrolítico Dorado", 1, "Acero Templado", "assets/img/3.png", "bulon tornillo rosca metal acero hierro"))
-        this.agregar(new Bulon(4, "BULON CABEZA HEXAGONAL CALIDAD 8.8 ROSCA MB DIN 960", 235, "Acero templado. Rosca - Metrico MB (Paso Fino). DIN 960 con cuello. Terminación Zincado electrolítico Dorado", 1, "Acero Templado", "assets/img/4.png", "bulon tornillo rosca metal acero hierro"))
-        this.agregar(new Bulon(5, "BULON CABEZA HEXAGONAL CALIDAD 8.8 ROSCA MB DIN 961", 243, "Acero templado. Rosca - Metrico MB (Paso Fino). DIN 961 todo rosca. Terminación Zincado electrolítico Dorado", 1, "Acero Templado", "assets/img/5.png", "bulon tornillo rosca metal acero hierro"))
-        this.agregar(new Bulon(6, "BULON CABEZA HEXAGONAL CALIDAD 8.8 ROSCA MC DIN 960", 264, "Acero templado. Rosca - Metrico MC (Paso Fino). DIN 960 con cuello. Terminación Zincado electrolítico Dorado", 1, "Acero Templado", "assets/img/6.png", "bulon tornillo rosca metal acero hierro"))
-        this.agregar(new Bulon(7, "BULON CABEZA HEXAGONAL CALIDAD 8.8 ROSCA MC DIN 961", 269, "Acero templado. Rosca - Métrico MC (Paso Fino). DIN 961 todo rosca. Terminación Zincado electrolítico Dorado", 1, "Acero Templado", "assets/img/7.png", "bulon tornillo rosca metal acero hierro"))
-        this.agregar(new Bulon(8, "BULON CABEZA HEXAGONAL GRADO 5 ROSCA UNC", 321, "Acero templado. Rosca - Pulgada UNC (Paso Grueso). Terminación Zincado electrolítico Dorado", 1, "Acero Templado", "assets/img/8.png", "bulon tornillo rosca metal acero hierro"))
-        this.agregar(new Bulon(9, "BULON CABEZA HEXAGONAL GRADO 5 ROSCA UNF", 326, "Acero templado. Rosca - Pulgada UNF (Paso Fino). Terminación Zincado electrolítico Dorado", 1, "Acero Templado", "assets/img/9.png", "bulon tornillo rosca metal acero hierro"))
-        this.agregar(new Bulon(10, "BULON CABEZA HEXAGONAL GRADO 5 ROSCA WTW", 340, "Acero templado. Rosca - Pulgada WTW (Paso Grueso). Terminación Zincado electrolítico Dorado", 1, "Acero Templado", "assets/img/10.png", "bulon tornillo rosca metal acero hierro"))
-        this.agregar(new Bulon(11, "BULON CABEZA HEXAGONAL ROSCA MA CALIDAD 8.8 DIN 933", 274, "Acero templado. Rosca - MA (Paso Grueso). DIN 933 Todo Rosca. Terminación Zincado electrolítico Dorado", 1, "Acero Templado", "assets/img/11.png", "bulon tornillo rosca metal acero hierro"))
-        this.agregar(new Bulon(12, "BULON HEXAGONAL CALIDAD 10.9 DIN 931 ACERO", 217, "Acero templado. Rosca - Metrico MA (Paso Grueso). DIN 931 con cuello. Terminación Pavonado Negro", 1, "Acero Templado", "assets/img/12.png", "bulon tornillo rosca metal acero hierro"))
-        this.agregar(new Bulon(13, "BULON HEXAGONAL CALIDAD 10.9 DIN 933 ACERO", 299, "Acero templado. Rosca - Metrico (Paso Grueso). Terminación Pavonado Negro", 1, "Acero Templado", "assets/img/13.png", "bulon tornillo rosca metal acero hierro"))
-        this.agregar(new Bulon(14, "TORNILLO CABEZA HEXAGONAL ROSCA UNC HIERRO", 249, "Hierro dulce. Rosca - Pulgada UNC (Paso Grueso). Terminación Zincado electrolítico Azul/ Natural", 1, "Hierro Dulce", "assets/img/14.png", "bulon tornillo rosca metal acero hierro"))
-        this.agregar(new Bulon(15, "TORNILLO CABEZA HEXAGONAL ROSCA WTW 1/2-12", 314, "Hierro dulce. Rosca - Pulgada WTW (Paso Grueso). Solo 1/2 - 12 hilos. Terminación Zincado electrolítico Azul/ Natural", 1, "Hierro Dulce", "assets/img/15.png", "bulon tornillo rosca metal acero hierro"))
-        this.agregar(new Bulon(16, "TORNILLO CABEZA HEXAGONAL ROSCA WTW 1/2-18", 365, "Hierro dulce. Rosca - Pulgada WTW (Paso Fino). Solo 1/2 - 18 hilos. Terminación Zincado electrolítico Azul/ Natural", 1, "Hierro Dulce", "assets/img/16.png", "bulon tornillo rosca metal acero hierro"))
+    async cargarBulones() {
+        try {
+            const response = await fetch('bulones.json');
+            const data = await response.json();
+            this.listaBulones = [];
+            data.forEach((bulonData) => {
+                const bulon = new Bulon(
+                    bulonData.id,
+                    bulonData.nombre,
+                    bulonData.precio,
+                    bulonData.descripcion,
+                    bulonData.cantidad,
+                    bulonData.material,
+                    bulonData.img,
+                    bulonData.alt
+                )
+                this.agregar(bulon)
+            })
+            this.mostrarEnDOM()
+        } catch (error) {
+            console.error('Error al cargar los bulones desde el archivo JSON:', error)
+        }
     }
 
     mostrarEnDOM() {
-        let contenedor_bulones = document.getElementById("contenedor_bulones")
-        contenedor_bulones.innerHTML = ""
-        this.listaBulones.forEach(bulon => {
-            contenedor_bulones.innerHTML += bulon.descripcionBulon()
-        })
-        this.listaBulones.forEach(bulon => {
-            const btn_ap = document.getElementById(`ap-${bulon.id}`)
+        let contenedor_bulones = document.getElementById("contenedor_bulones");
+        contenedor_bulones.innerHTML = "";
+
+        const filtroMaterial = document.getElementById("material").value;
+        const precioMinimo = parseFloat(document.getElementById("precioMin").value) || 0;
+        const precioMaximo = parseFloat(document.getElementById("precioMax").value) || Infinity;
+
+        const bulonesFiltrados = this.listaBulones.filter((bulon) => {
+            return (filtroMaterial === "Todos" || bulon.material === filtroMaterial) &&
+                (precioMinimo <= bulon.precio && bulon.precio <= precioMaximo);
+        });
+
+        bulonesFiltrados.forEach((bulon) => {
+            contenedor_bulones.innerHTML += bulon.descripcionBulon();
+        });
+
+        bulonesFiltrados.forEach((bulon) => {
+            const btn_ap = document.getElementById(`ap-${bulon.id}`);
             btn_ap.addEventListener("click", () => {
-                carrito.agregar(bulon)
-                carrito.guardarEnStorage()
-                carrito.mostrarEnDOM()
-            })
-        })
-        this.conteoBulones()
+                carrito.agregar(bulon);
+                carrito.guardarEnStorage();
+                carrito.mostrarEnDOM();
+            });
+        });
+
+        this.conteoBulones(bulonesFiltrados);
     }
 
-    conteoBulones() {
-        let cantidadBulones = this.listaBulones.length
-        const conteoHTML = document.getElementById("conteoHTML")
-        conteoHTML.innerHTML = `Cant. de productos: <b class="bCant">(` + cantidadBulones + `)</b>`
+    conteoBulones(lista) {
+        let cantidadBulones = lista.length
+        document.getElementById("conteoHTML").innerHTML = `Cant. de productos: <b class="bCant">(` + cantidadBulones + `)</b>`
     }
 }
 
@@ -309,13 +312,14 @@ class Carrito {
     calcularTotal() {
         return this.listaCarrito.reduce((acumulador, bulon) => acumulador + bulon.precio * bulon.cantidad, 0)
     }
+
     mostrarTotal() {
         document.getElementById("precio_total").innerText = `Precio Total: $${this.calcularTotal()}`
         document.getElementById("btn_precio_total").innerHTML = `<i class="fa-light fa-cart-shopping"></i>&nbsp;&nbsp;Tu Pedido&nbsp;&nbsp;&nbsp;<b>$${this.calcularTotal()}</b>`
     }
 }
 
-const CP = new BulonController()
+const BC = new BulonController()
 const carrito = new Carrito()
 
 
@@ -323,9 +327,7 @@ carrito.obtenerStorage()
 carrito.mostrarEnDOM()
 carrito.mostrarTotal()
 
-CP.cargarBulones()
-CP.mostrarEnDOM()
-CP.eventosEnEscucha()
+BC.eventosEnEscucha()
 
 const restablecerFiltros = document.getElementById("restablecerFiltros")
 const rotarFlechas = document.getElementById("rotarFlechas")
@@ -356,9 +358,9 @@ document.getElementById("pagar").addEventListener("click", () => {
             confirmButtonText: 'Aceptar'
         }).then((result) => {
             if (result.isConfirmed) {
-                location.reload();
+                location.reload()
             }
-        });
+        })
     } else {
         Swal.fire({
             title: 'Añade productos al carrito!!',
@@ -367,8 +369,8 @@ document.getElementById("pagar").addEventListener("click", () => {
             confirmButtonText: 'Aceptar'
         }).then((result) => {
             if (result.isConfirmed) {
-                location.reload();
+                location.reload()
             }
         })
     }
-});
+})
