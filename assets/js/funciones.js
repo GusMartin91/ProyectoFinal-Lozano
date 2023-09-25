@@ -374,6 +374,7 @@ function addAnimation(button) {
         button.innerHTML = 'Añadir al Pedido <i class="fa-light fa-cart-shopping"></i>'
     }, 1000)
 }
+
 let irAlPago = document.getElementById("pagar");
 irAlPago.addEventListener("click", () => {
     if (localStorage.length != 0) {
