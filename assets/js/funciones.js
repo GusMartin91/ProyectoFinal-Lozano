@@ -78,58 +78,52 @@ class Bulon {
 class BulonController {
     constructor() {
         this.listaBulones = []
+    }
 
-        const botonOrdenMenor = document.getElementById("ordenMenor")
-        const botonOrdenMayor = document.getElementById("ordenMayor")
+    eventosEnEscucha() {
+        document.getElementById("material").addEventListener("change", () => {
+            this.filtroMaterial()
+        });
 
-        botonOrdenMenor.addEventListener("click", () => {
+        const precioMin = document.getElementById("precioMin")
+        precioMin.addEventListener("change", () => {
+            let precioMinimo = parseFloat(precioMin.value) || 0
+            let precioMaximo = parseFloat(precioMax.value) || Infinity
+            this.filtrarPorPrecio(precioMinimo, precioMaximo)
+            this.filtroMaterial()
+        })
+
+        const precioMax = document.getElementById("precioMax")
+        precioMax.addEventListener("change", () => {
+            let precioMinimo = parseFloat(precioMin.value) || 0
+            let precioMaximo = parseFloat(precioMax.value) || Infinity
+            this.filtrarPorPrecio(precioMinimo, precioMaximo)
+            this.filtroMaterial()
+        })
+
+        document.getElementById("ordenMenor").addEventListener("click", () => {
             this.ordenarPorMenorPrecio()
         });
 
-        botonOrdenMayor.addEventListener("click", () => {
+        document.getElementById("ordenMayor").addEventListener("click", () => {
             this.ordenarPorMayorPrecio()
         });
 
-        const materialSelect = document.getElementById("material")
-        materialSelect.addEventListener("change", () => {
-            this.filtroMaterial()
-            this.conteoBulones()
-        });
-
-        const restablecerFiltrosBtn = document.getElementById("restablecerFiltros")
-        restablecerFiltrosBtn.addEventListener("click", () => {
+        document.getElementById("restablecerFiltros").addEventListener("click", () => {
             this.restablecerFiltros()
-            this.conteoBulones()
         });
     }
 
-    conteoBulones() {
-        let cantidadBulones = this.listaBulones.length
-        const conteoHTML = document.getElementById("conteoHTML")
-        conteoHTML.innerHTML = `Cant. de productos: <b class="bCant">(` + cantidadBulones + `)</b>`
-    }
-    restablecerFiltros() {
-        const materialSelect = document.getElementById("material")
-        materialSelect.value = "Todos"
-
-        const precioMin = document.getElementById("precioMin")
-        const precioMax = document.getElementById("precioMax")
-
-        precioMin.value = ""
-        precioMax.value = ""
-
+    filtrarPorPrecio(min = 0, max = Infinity) {
         this.listaBulones = []
         this.cargarBulones()
-        this.mostrarEnDOM()
-        this.conteoBulones()
+        this.listaBulones = this.listaBulones.filter(bulon => min <= bulon.precio && bulon.precio <= max)
     }
 
     filtroMaterial() {
-        const materialSelect = document.getElementById("material")
-        let selectedMaterial = materialSelect.value
-
-        let minPrice = parseFloat(document.getElementById("precioMin").value) || 0
-        let maxPrice = parseFloat(document.getElementById("precioMax").value) || Infinity
+        let selectedMaterial = document.getElementById("material").value
+        let precioMinimo = parseFloat(document.getElementById("precioMin").value) || 0
+        let precioMaximo = parseFloat(document.getElementById("precioMax").value) || Infinity
 
         this.listaBulones = []
         this.cargarBulones()
@@ -137,45 +131,30 @@ class BulonController {
             this.listaBulones = this.listaBulones.filter(bulon => bulon.material === selectedMaterial)
         }
 
-        this.listaBulones = this.listaBulones.filter(bulon => minPrice <= bulon.precio && bulon.precio <= maxPrice)
+        this.listaBulones = this.listaBulones.filter(bulon => precioMinimo <= bulon.precio && bulon.precio <= precioMaximo)
         this.mostrarEnDOM()
-        this.conteoBulones()
-    }
-
-    filtroPrecio() {
-        const precio_min = document.getElementById("precioMin")
-        const precio_max = document.getElementById("precioMax")
-
-        precio_min.addEventListener("change", () => {
-            this.filtrarPorPrecio()
-            this.filtroMaterial()
-            this.mostrarEnDOM()
-            this.conteoBulones()
-        })
-
-        precio_max.addEventListener("change", () => {
-            this.filtrarPorPrecio()
-            this.filtroMaterial()
-            this.mostrarEnDOM()
-            this.conteoBulones()
-        })
-    }
-
-
-    filtrarPorPrecio(min = 0, max = Infinity) {
-        this.listaBulones = []
-        this.cargarBulones()
-
-        this.listaBulones = this.listaBulones.filter(bulon => min <= bulon.precio && bulon.precio <= max)
-
     }
 
     ordenarPorMenorPrecio() {
         this.listaBulones.sort((a, b) => a.precio - b.precio)
         this.mostrarEnDOM()
     }
+
     ordenarPorMayorPrecio() {
         this.listaBulones.sort((a, b) => b.precio - a.precio)
+        this.mostrarEnDOM()
+    }
+
+    restablecerFiltros() {
+        const materialSelect = document.getElementById("material")
+        const precioMin = document.getElementById("precioMin")
+        const precioMax = document.getElementById("precioMax")
+        materialSelect.value = "Todos"
+        precioMin.value = ""
+        precioMax.value = ""
+
+        this.listaBulones = []
+        this.cargarBulones()
         this.mostrarEnDOM()
     }
 
@@ -206,16 +185,12 @@ class BulonController {
 
     mostrarEnDOM() {
         let contenedor_bulones = document.getElementById("contenedor_bulones")
-
         contenedor_bulones.innerHTML = ""
-
         this.listaBulones.forEach(bulon => {
             contenedor_bulones.innerHTML += bulon.descripcionBulon()
         })
-
         this.listaBulones.forEach(bulon => {
             const btn_ap = document.getElementById(`ap-${bulon.id}`)
-
             btn_ap.addEventListener("click", () => {
                 carrito.agregar(bulon)
                 carrito.guardarEnStorage()
@@ -223,6 +198,12 @@ class BulonController {
             })
         })
         this.conteoBulones()
+    }
+
+    conteoBulones() {
+        let cantidadBulones = this.listaBulones.length
+        const conteoHTML = document.getElementById("conteoHTML")
+        conteoHTML.innerHTML = `Cant. de productos: <b class="bCant">(` + cantidadBulones + `)</b>`
     }
 }
 
@@ -282,21 +263,18 @@ class Carrito {
     mostrarEnDOM() {
         let cantCarrito = 0
         this.listaCarrito.forEach(bulon => {
-            cantCarrito = cantCarrito + bulon.cantidad
+            cantCarrito += bulon.cantidad
         });
 
         let contenedor_carrito = document.getElementById("contenedor_carrito")
-        let tituloCarrito = document.getElementById("modalLabel")
-        tituloCarrito.innerHTML = "Llevas " + cantCarrito + " productos agregados."
+        document.getElementById("modalLabel").innerHTML = "Llevas " + cantCarrito + " productos agregados."
         contenedor_carrito.innerHTML = ""
         this.listaCarrito.forEach(bulon => {
             contenedor_carrito.innerHTML += bulon.descripcionCarrito();
         })
 
         this.listaCarrito.forEach(bulon => {
-            const btn_aumentar = document.getElementById(`aumentar-${bulon.id}`)
-
-            btn_aumentar.addEventListener("click", () => {
+            document.getElementById(`aumentar-${bulon.id}`).addEventListener("click", () => {
                 this.agregar(bulon)
                 this.guardarEnStorage()
                 this.mostrarEnDOM()
@@ -305,9 +283,7 @@ class Carrito {
         })
 
         this.listaCarrito.forEach(bulon => {
-            const btn_disminuir = document.getElementById(`disminuir-${bulon.id}`)
-
-            btn_disminuir.addEventListener("click", () => {
+            document.getElementById(`disminuir-${bulon.id}`).addEventListener("click", () => {
                 bulon.disminuirCantidad()
                 this.guardarEnStorage()
                 this.mostrarEnDOM()
@@ -316,9 +292,7 @@ class Carrito {
         })
 
         this.listaCarrito.forEach(bulon => {
-            const btn_ep = document.getElementById(`ep-${bulon.id}`)
-
-            btn_ep.addEventListener("click", () => {
+            document.getElementById(`ep-${bulon.id}`).addEventListener("click", () => {
                 this.eliminar(bulon)
                 this.guardarEnStorage()
                 this.mostrarEnDOM()
@@ -326,8 +300,7 @@ class Carrito {
             })
         })
 
-        let vaciarCarrito = document.getElementById("vaciarCarrito")
-        vaciarCarrito.addEventListener("click", () => {
+        document.getElementById("vaciarCarrito").addEventListener("click", () => {
             this.eliminarStorage()
             location.reload()
         })
@@ -337,10 +310,8 @@ class Carrito {
         return this.listaCarrito.reduce((acumulador, bulon) => acumulador + bulon.precio * bulon.cantidad, 0)
     }
     mostrarTotal() {
-        const precio_total = document.getElementById("precio_total")
-        const btn_precio_total = document.getElementById("btn_precio_total")
-        precio_total.innerText = `Precio Total: $${this.calcularTotal()}`
-        btn_precio_total.innerHTML = `<i class="fa-light fa-cart-shopping"></i>&nbsp;&nbsp;Tu Pedido&nbsp;&nbsp;&nbsp;<b>$${this.calcularTotal()}</b>`
+        document.getElementById("precio_total").innerText = `Precio Total: $${this.calcularTotal()}`
+        document.getElementById("btn_precio_total").innerHTML = `<i class="fa-light fa-cart-shopping"></i>&nbsp;&nbsp;Tu Pedido&nbsp;&nbsp;&nbsp;<b>$${this.calcularTotal()}</b>`
     }
 }
 
@@ -354,7 +325,7 @@ carrito.mostrarTotal()
 
 CP.cargarBulones()
 CP.mostrarEnDOM()
-CP.filtroPrecio()
+CP.eventosEnEscucha()
 
 const restablecerFiltros = document.getElementById("restablecerFiltros")
 const rotarFlechas = document.getElementById("rotarFlechas")
@@ -375,8 +346,7 @@ function addAnimation(button) {
     }, 1000)
 }
 
-let irAlPago = document.getElementById("pagar");
-irAlPago.addEventListener("click", () => {
+document.getElementById("pagar").addEventListener("click", () => {
     if (localStorage.length != 0) {
         localStorage.removeItem("listaCarrito")
         Swal.fire({
